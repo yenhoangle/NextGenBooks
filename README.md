@@ -1,2 +1,2 @@
 # NextGenBooks
-A website to buy and sell books by Asians and Asian American authors.
+A website to buy and sell books by Asian and Asian American authors.
