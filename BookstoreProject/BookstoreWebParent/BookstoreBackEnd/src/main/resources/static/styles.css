@@ -1,0 +1,14 @@
+@charset "ISO-8859-1";
+*.icon-white {
+	color: white
+}
+*.icon-green {
+	color: green
+}
+
+*.icon-dark {
+	color: gray
+}
+*.icon-silver {
+	color: silver
+}
