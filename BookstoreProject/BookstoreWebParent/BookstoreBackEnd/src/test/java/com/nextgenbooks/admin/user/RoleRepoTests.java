@@ -28,7 +28,7 @@ public class RoleRepoTests {
 	}
 	
 	@Test void testManager() {
-		Role manager = new Role("Mananger", "Authorization for products and orders");
+		Role manager = new Role("Manager", "Authorization for products and orders");
 		Role saved = repo.save(manager);
 		assertThat(saved.getId()).isGreaterThan(0);
 	}

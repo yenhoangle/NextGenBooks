@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.nextgenbooks.common.entity.Role;
 import com.nextgenbooks.common.entity.User;
 
 
@@ -26,10 +28,42 @@ public class UserController {
 		return "users";
 	}
 	
+	@GetMapping("/users/new") 
+	public String newUser(Model model) {
+		List<Role> listRoles = service.listRoles();
+		User user = new User();
+		user.setEnabled(true);
+		model.addAttribute("user", user);
+		model.addAttribute("listRoles", listRoles);
+		model.addAttribute("pgTitle", "New User");
+		return "user_form";
+	}
+	
+
+	@PostMapping("/users/save")
+	public String saveUser(User user) {
+		service.save(user);
+		return "redirect:/users";
+	} 
+	
 	@GetMapping("/users/delete/{id}")
 	public String deleteUser(@PathVariable(name="id") Integer id, Model model, RedirectAttributes redirAtt) {
 		try {
 			service.delete(id);
+		} catch (NoSuchElementException e) {
+			
+		}
+		return "redirect:/users";
+	}
+	
+	@GetMapping("/users/edit/{id}")
+	public String editUser(@PathVariable(name="id") Integer id, Model model, RedirectAttributes redirAtt) {
+		try {
+			User user = service.get(id);
+			List<Role> listRoles = service.listRoles();
+			model.addAttribute("user", user);
+			model.addAttribute("pgTitle", "Editing User");
+			model.addAttribute("listRoles", listRoles);
 		} catch (NoSuchElementException e) {
 			
 		}

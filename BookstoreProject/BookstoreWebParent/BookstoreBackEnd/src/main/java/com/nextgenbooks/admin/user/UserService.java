@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.nextgenbooks.common.entity.Role;
 import com.nextgenbooks.common.entity.User;
 
 
@@ -17,7 +18,8 @@ import com.nextgenbooks.common.entity.User;
 public class UserService {
 	@Autowired
 	private UserRepo repo;
-	
+	@Autowired
+	private RoleRepo roleRepo;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
@@ -25,6 +27,9 @@ public class UserService {
 		return (List<User>) repo.findAll();	
 	}
 	
+	public List<Role> listRoles() {
+		return (List<Role>) roleRepo.findAll();	
+	}
 	public User get(Integer id) throws NoSuchElementException {
 		try {
 			return repo.findById(id).get();
@@ -47,10 +52,59 @@ public class UserService {
 		String encodedPassword = passwordEncoder.encode(user.getPassword());
 		user.setPassword(encodedPassword);
 	}
+		
+	//check whether it is an existing user or a new user
+	public User save(User user) {
+		boolean update = (user.getId()!=null);
+		if (update) {
+			User existingUser = repo.findById(user.getId()).get();
+			if (user.getPassword().isEmpty()) {
+				user.setPassword(existingUser.getPassword());
+			} else {
+				encodePassword(user);
+			}
+		} else {
+			encodePassword(user);
+		}
+
+		return repo.save(user);
+	}
 	
-	public void save(User user) {
-		encodePassword(user);
-		repo.save(user);
+	public User updateAccount(User user) {
+		User existingUser =  repo.findById(user.getId()).get();
+		String pw = user.getPassword();
+		if(!pw.isEmpty()) {
+			existingUser.setPassword(pw);
+			encodePassword(existingUser);
+		}
+		existingUser.setFirstName(user.getFirstName());
+		existingUser.setLastName(user.getLastName());
+		
+		return repo.save(existingUser);
+	}
+	
+	public User getByEmail(String email) {
+		return repo.getUserByEmail(email);
+	}
+	
+	//check if a user with the same email is already in the system
+	public boolean isEmailUnique(Integer id, String email) {
+		User user = repo.getUserByEmail(email);
+		if (user == null)  {
+			return true;
+		}
+
+		boolean isNew = (id == null);
+		//if we are creating a new user but we see email is already in system, return false
+		if (isNew) {
+			if(user !=null) return false;			
+		} else {
+			if (user.getId() !=id) {
+				return false;
+			}
+		} 
+	
+		return true;
 	}
 
 }
