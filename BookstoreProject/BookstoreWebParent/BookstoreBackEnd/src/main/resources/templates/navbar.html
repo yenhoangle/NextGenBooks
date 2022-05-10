@@ -18,20 +18,23 @@
 				<li class= "nav-item" sec:authorize="hasAuthority('Admin')">
 				<a class="nav-link" th:href="@{/users}">Users</a>
 				</li>
+				<!-- 
 				<li class= "nav-item" sec:authorize="hasAnyAuthority('Admin', 'Manager')">
 				<a class="nav-link" th:href="@{/customers}">Customers</a>
 				</li>
+				
 				<li class= "nav-item" sec:authorize="hasAnyAuthority('Admin', 'Manager')">
 				<a class="nav-link" th:href="@{/orders}">Orders</a>
 				</li>
+				-->
 				<li class= "nav-item" sec:authorize="hasAnyAuthority('Admin', 'Manager')">
-				<a class="nav-link" th:href="@{/products}">Products</a>
+				<a class="nav-link" th:href="@{/books}">Books</a>
 				</li>
 				<li class= "nav-item" sec:authorize="hasAnyAuthority('Admin', 'Manager')">
 				<a class="nav-link" th:href="@{/genres}">Genres</a>
 				</li>
 				<li class= "nav-item" sec:authorize="hasAnyAuthority('Admin', 'Manager')">
-				<a class="nav-link" th:href="@{/authors}">Authors</a>
+				<a class="nav-link" th:href="@{/perspective}">Perspective</a>
 				</li>
 				<li>
 					<span class="fa-solid fa-user fa-2x icon-silver"></span>

@@ -54,6 +54,7 @@ public class User {
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.enabled = true;
 	}
 
 	public Integer getId() {
@@ -117,7 +118,6 @@ public class User {
 	}
 
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return enabled;
 	}
 }

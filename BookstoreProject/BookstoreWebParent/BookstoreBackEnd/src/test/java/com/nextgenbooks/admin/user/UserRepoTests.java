@@ -55,14 +55,16 @@ public class UserRepoTests {
 	}
 	
 	@Test
+	public void testDisable() {
+		Integer id = 2;
+		repo.updateEnable(id, false);
+	}
+	
+	@Test
 	public void testEnable() {
 		Integer id = 2;
 		repo.updateEnable(id, true);
 	}
 	
-	@Test
-	public void testDisable() {
-		Integer id = 2;
-		repo.updateEnable(id, false);
-	}
+
 }
