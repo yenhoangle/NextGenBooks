@@ -120,4 +120,9 @@ public class User {
 	public boolean isEnabled() {
 		return enabled;
 	}
+	
+	@Override
+	public String toString() {
+		return this.firstName + " " + this.lastName;
+	}
 }

@@ -28,7 +28,10 @@
 				<td>[[${user.firstName}]]</td>
 				<td>[[${user.lastName}]]</td>
 				<td>[[${user.email}]]</td>
-				<td>[[${user.roles}]]</td>
+				<td>
+					<th:block th:each="role : ${user.roles}">
+					<span class= "badge badge-secondary" th:text="${role.name}"></span>
+				</td>
 				<td>
 					<a th:if="${user.enabled==true}" class="fa-solid fa-circle-check fa-2x icon-green" th:href="@{'/users/' + ${user.id} + '/enabled/false'}"></a>
 					<a th:if="${user.enabled==false}" class="fa-solid fa-circle-check fa-2x icon-dark" th:href="@{'/users/' + ${user.id} + '/enabled/true'}"></a>
