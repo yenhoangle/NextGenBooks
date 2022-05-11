@@ -1,5 +1,7 @@
 package com.nextgenbooks.common.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -157,4 +159,5 @@ public class Customer {
 	public String toString() {
 		return firstName + " " + lastName;
 	}
+
 }

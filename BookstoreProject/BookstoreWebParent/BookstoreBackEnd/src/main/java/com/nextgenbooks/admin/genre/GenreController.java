@@ -39,7 +39,7 @@ public class GenreController {
 	}
 	
 	@GetMapping("/genres/{id}/enabled/{status}")
-	public String updateUserEnabled(@PathVariable(name="id") Integer id, @PathVariable("status") boolean enabled, RedirectAttributes redirAtt) {
+	public String updateGenreEnabled(@PathVariable(name="id") Integer id, @PathVariable("status") boolean enabled, RedirectAttributes redirAtt) {
 		service.updateGenreEnable(id, enabled);
 		return "redirect:/genres";
 	}

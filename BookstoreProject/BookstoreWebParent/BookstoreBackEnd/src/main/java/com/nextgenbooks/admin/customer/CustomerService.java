@@ -1,4 +1,4 @@
-package com.nextgenbooks.admin.book;
+package com.nextgenbooks.admin.customer;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -8,29 +8,23 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-import com.nextgenbooks.common.entity.Book;
-
+import com.nextgenbooks.common.entity.Customer;
 
 @Service
 @Transactional
-public class BookService {
-
+public class CustomerService {
 	@Autowired
-	private BookRepo repo;
+	private CustomerRepo repo;
 	
-	public List<Book> listAll() {
-		return (List<Book>)repo.findAll();
+	public List<Customer> listAll() {
+		return (List<Customer>)repo.findAll();
 	}
 	
-	public Book save(Book book) {
-		return repo.save(book);
-		
-	}
 	
-	public void updateBookEnable(Integer id, boolean enabled) {
+	public void updateCustomerEnable(Integer id, boolean enabled) {
 		repo.updateEnable(id, enabled);
 	}
+	
 	public void delete(Integer id) throws NoSuchElementException {
 		Long count = repo.countById(id);
 		if (count ==  null || count == 0) {

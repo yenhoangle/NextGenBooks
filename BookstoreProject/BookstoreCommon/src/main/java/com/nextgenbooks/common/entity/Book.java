@@ -19,9 +19,9 @@ public class Book {
 	private String name; //title of book
 	@Column(unique = true, length = 100, nullable = false)
 	private String alias;
-	@Column(unique = true, length = 50, nullable = false, name = "author_first")
+	@Column(length = 50, nullable = false, name = "author_first")
 	private String authorFirst;
-	@Column(unique = true, length = 50, nullable = false, name = "author_last")
+	@Column(length = 50, nullable = false, name = "author_last")
 	private String authorLast;
 	@Column(length = 512, nullable = false)
 	private String quote;
@@ -32,6 +32,10 @@ public class Book {
 	private boolean inStock;
 	@Column(nullable = false)
 	private float price;
+	@Column(nullable = false, name = "page_count")
+	private int pageCount;
+	@Column(length = 100)
+	private String image; //image name ex: sun.png
 	
 	@ManyToOne
 	@JoinColumn(name = "genres_id")
@@ -95,6 +99,15 @@ public class Book {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	public boolean isEnabled() {
 		return enabled;
 	}
@@ -113,12 +126,22 @@ public class Book {
 	public void setPrice(float price) {
 		this.price = price;
 	}
+	
+	public int getPageCount() {
+		return pageCount;
+	}
+
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
+	}
+
 	public Genre getGenre() {
 		return genre;
 	}
 	public void setGenre(Genre genre) {
 		this.genre = genre;
 	}
+	
 	public Perspective getPerspective() {
 		return perspective;
 	}

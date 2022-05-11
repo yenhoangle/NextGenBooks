@@ -37,6 +37,35 @@ public class CustomerRepoTests {
 		assertThat(saved.getId()).isGreaterThan(0);
 	}
 	
+	@Test void testCreateRest() {
+		Customer two = new Customer();
+		two.setFirstName("Samantha");
+		two.setLastName("Vo");
+		two.setPassword("$2a$10$T4s30H30KyvLhd4cVt3lQuMcdejcVrAuc2VFnYoBbtLUNnuggwf9q");
+		two.setEmail("samvo@gmail.com");
+		two.setAddressLine1("111 Circle Lane");
+		two.setAddressLine2("Unit 4");
+		two.setCity("Sacramento");
+		two.setState("California");
+		two.setCountry("United States");
+		two.setPhoneNum("435-544-4588");
+		
+		Customer three = new Customer();
+		three.setFirstName("Peter");
+		three.setLastName("McDowell");
+		three.setPassword("$2a$10$T4s30H30KyvLhd4cVt3lQuMcdejcVrAuc2VFnYoBbtLUNnuggwf9q");
+		three.setEmail("petmc@gmail.com");
+		three.setAddressLine1("349 Montana Way");
+		three.setAddressLine2("Apt 6");
+		three.setCity("Salt Lake City");
+		three.setState("Utah");
+		three.setCountry("United States");
+		three.setPhoneNum("635-222-6523");
+		
+		repo.save(two);
+		repo.save(three);
+	}
+	
 	@Test 
 	void getCustomer() {
 		Customer customer = repo.findById(1).get();

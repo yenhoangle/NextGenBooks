@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::pg_head('Customers')">
+</head>
+<body>
+<div class="container-fluid">
+	<div th:replace="navbar:: menu"></div>
+	<div>
+		<h2>Manage Customers</h2>
+	</div>
+	<div>
+		<table class= "table table-bordered table-striped table-hover table-responsive-xl">
+			<thead class="thead-dark">
+			<tr>
+				<th>Customer ID</th>
+				<th>Customer Name</th>
+				<th>E-mail</th>
+				<th>Phone Number</th>
+				<th>Country</th>
+				<th>State</th>
+				<th>City</th>
+				<th>Active</th>
+				<th>Delete</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="customer: ${listCustomers}">
+				<td>[[${customer.id}]]</td>
+				<td>[[${customer.getFullName}]]</td>
+				<td>[[${customer.getEmail}]]</td>
+				<td>[[${customer.getPhoneNum}]]</td>
+				<td>[[${customer.getCountry}]]</td>
+				<td>[[${customer.getState}]]</td>
+				<td>[[${customer.getCity}]]</td>
+				<td>
+					<a th:if="${customer.enabled==true}" class="fa-solid fa-circle-check fa-2x icon-green" th:href="@{'/customers/' + ${customer.id} + '/enabled/false'}"></a>
+					<a th:if="${customer.enabled==false}" class="fa-solid fa-circle-check fa-2x icon-dark" th:href="@{'/customers/' + ${customer.id} + '/enabled/true'}"></a>
+				</td>
+				<td> <a class="fa-solid fa-trash-can fa-2x" th:href="@{'/customers/delete/' + ${customer.id}}"></a>
+				</td>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="text-center">
+		<p>Next Generation Books - Project By Yen Hoang Le</p>
+	</div>
+</div>
+
+</body>
+</html>

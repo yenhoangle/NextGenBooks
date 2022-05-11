@@ -1,44 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" 
 	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-<head th:replace="fragments::pg_head('Perspective Form')">
+<head th:replace="fragments::pg_head('Genre Form')">
 </head>
 <body>
 <div class="container-fluid">
 	<div th:replace="navbar:: menu"></div>
 	<div>
-		<h2>Create New Perspective | Perspective Form</h2>
+		<h2>Create New Book | Book Form</h2>
 	</div>
-	<form th:action="@{/perspectives/save}" method="post" style="max-width: 500px; margin: 0 auto"
-		th:object="${perspective}" >
+	<form th:action="@{/books/save}" method="post" style="max-width: 500px; margin: 0 auto"
+		th:object="${book}" >
 		<input type="hidden" th:field="*{id}" />
 	<div class="border border-secondary rounded p-3">
 		
 		<div class="form-group row">
-			<label class="col-sm-4 col-form-label">Perspective Type:</label>
+			<label class="col-sm-4 col-form-label">Book Name:</label>
 			<div class="col-sm-8">
 				<input type="text" class="form-control" th:field="*{name}" required/>
 			</div>
 		</div>	
 						
 		<div class="form-group row">
-			<label class="col-sm-4 col-form-label">Perspective Alias:</label>
+			<label class="col-sm-4 col-form-label">Book Alias:</label>
 			<div class="col-sm-8">
 			<input type="text" class="form-control" th:field="*{alias}" required/>
 			</div>
-		</div>
+		</div>		
+				
 		<div class="form-group row">
-			<label class="col-sm-4 col-form-label">Genres:</label>
+			<label class="col-sm-4 col-form-label">Enabled:</label>
 			<div class="col-sm-8">
-				<th:block th:each="genre: ${listGenres}"> 
-				<input type="checkbox" th:field="*{genres}" 
-					th:text="${genre.name}" th:value="${genre.id}"
-					class="m-2"
-					/>
-					<br/>
-				</th:block>
+			<input type="checkbox" th:field="*{enabled}" required/>
 			</div>
-		</div>								
+		</div>
+		
 		
 		<div class="text-center">
 			<input type="submit" value="Save" class="btn btn-primary m-3" />
@@ -56,7 +52,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#btnCancel").on("click", function() {
-			window.location = "[[@{/perspectives}]]";
+			window.location = "[[@{/books}]]";
 		});
 	});
 	

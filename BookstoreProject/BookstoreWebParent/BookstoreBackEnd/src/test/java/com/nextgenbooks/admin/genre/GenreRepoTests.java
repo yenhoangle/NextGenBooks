@@ -25,6 +25,7 @@ public class GenreRepoTests {
 		Genre saved = repo.save(epis);
 		assertThat(saved.getId()).isGreaterThan(0);
 	}
+	
 	@Test
 	public void testCreateRest() {
 		Genre his = new Genre("Historical Fiction", "hisfic");
