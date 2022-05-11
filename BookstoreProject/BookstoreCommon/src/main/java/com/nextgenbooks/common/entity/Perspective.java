@@ -29,7 +29,7 @@ public class Perspective {
 	@JoinTable(
 				name = "perspectives_genres", 
 				joinColumns = @JoinColumn(name = "perspective_id"),
-				inverseJoinColumns = @JoinColumn(name = "genre_id")
+				inverseJoinColumns = @JoinColumn(name = "genres_id")
 				)
 	
 	

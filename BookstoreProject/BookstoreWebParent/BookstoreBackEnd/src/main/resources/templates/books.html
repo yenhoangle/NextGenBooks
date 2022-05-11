@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::pg_head('Users')">
+</head>
+<body>
+<div class="container-fluid">
+	<div th:replace="navbar:: menu"></div>
+	<div>
+		<h2>Manage Genres</h2>
+		<a th:href="@{/genres/new}">Add New Genre</a>
+	</div>
+	<div>
+		<table class= "table table-bordered table-striped table-hover table-responsive-xl">
+			<thead class="thead-dark">
+			<tr>
+				<th>Genre ID</th>
+				<th>Genre Name</th>
+				<th>Genre Alias</th>
+				<th>Active</th>
+				<th>Delete</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="genre: ${listGenres}">
+				<td>[[${genre.id}]]</td>
+				<td>[[${genre.name}]]</td>
+				<td>[[${genre.alias}]]</td>
+				<td>
+					<a th:if="${genre.enabled==true}" class="fa-solid fa-circle-check fa-2x icon-green" th:href="@{'/genres/' + ${genre.id} + '/enabled/false'}"></a>
+					<a th:if="${genre.enabled==false}" class="fa-solid fa-circle-check fa-2x icon-dark" th:href="@{'/genres/' + ${genre.id} + '/enabled/true'}"></a>
+				</td>
+				<td> <a class="fa-solid fa-trash-can fa-2x" th:href="@{'/genres/delete/' + ${genre.id}}"></a>
+				</td>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="text-center">
+		<p>Next Generation Books - Project By Yen Hoang Le</p>
+	</div>
+</div>
+
+</body>
+</html>
