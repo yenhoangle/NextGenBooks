@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::pg_head('Perspectives')">
+</head>
+<body>
+<div class="container-fluid">
+	<div th:replace="navbar:: menu"></div>
+	<div>
+		<h2>Manage Perspectives</h2>
+		<a th:href="@{/perspectives/new}">Add New Perspective</a>
+	</div>
+	<div>
+		<table class= "table table-bordered table-striped table-hover table-responsive-xl">
+			<thead class="thead-dark">
+			<tr>
+				<th>Perspective ID</th>
+				<th>Perspective Type</th>
+				<th>Perspective Alias</th>
+				<th>Genres</th>
+				<th>Delete</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="perspective: ${listPerspectives}">
+				<td>[[${perspective.id}]]</td>
+				<td>[[${perspective.name}]]</td>
+				<td>[[${perspective.alias}]]</td>
+				<td>
+					<th:block th:each="genre : ${perspective.genres}">
+					<span class= "badge badge-secondary" th:text="${genre.name}"></span>
+				</td>
+				<td> <a class="fa-solid fa-trash-can fa-2x" th:href="@{'/perspectives/delete/' + ${perspective.id}}"></a>
+				</td>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="text-center">
+		<p>Next Generation Books - Project By Yen Hoang Le</p>
+	</div>
+</div>
+
+</body>
+</html>
