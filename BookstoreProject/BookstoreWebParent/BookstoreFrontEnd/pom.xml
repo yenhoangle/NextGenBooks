@@ -12,7 +12,7 @@
 	<name>BookstoreFrontEnd</name>
 	<description>Front end web application</description>
 	<properties>
-		<java.version>15</java.version>
+		<java.version>11</java.version>
 	</properties>
 	
 	<dependencies>
